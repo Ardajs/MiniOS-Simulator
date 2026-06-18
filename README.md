@@ -1,6 +1,3 @@
-# MiniOS-Simulator
-Interactive Operating System Simulator implementing FCFS, SJF, Priority, and Round Robin scheduling algorithms with performance analysis.
-
 # MiniOS Simulator
 
 A simplified Operating System Simulator developed in Python to demonstrate fundamental operating system concepts such as process management, CPU scheduling, memory management, and resource allocation.
