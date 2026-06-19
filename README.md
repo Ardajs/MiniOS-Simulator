@@ -10,7 +10,7 @@ The simulator provides implementations of common CPU scheduling algorithms and p
 
 ---
 
-## Features
+## Implemented Features
 
 ### Process Management
 
@@ -26,23 +26,35 @@ Each process contains:
 Supported states:
 
 ```text
-NEW → READY → RUNNING → TERMINATED
+NEW
+READY
+RUNNING
+TERMINATED
 ```
 
 ---
 
-### CPU Scheduling Algorithms
+## CPU Scheduling Algorithms
 
-Implemented algorithms:
+### FCFS (First Come First Serve)
 
-* FCFS (First Come First Serve)
-* SJF (Shortest Job First)
-* Priority Scheduling
-* Round Robin Scheduling
+Processes are executed according to their arrival order.
+
+### SJF (Shortest Job First)
+
+The shortest available job is selected first.
+
+### Priority Scheduling
+
+Processes are selected based on priority values.
+
+### Round Robin
+
+Time-sharing scheduling using configurable time quantum.
 
 ---
 
-### Performance Metrics
+## Scheduling Metrics
 
 The simulator calculates:
 
@@ -52,30 +64,120 @@ The simulator calculates:
 
 ---
 
-### Gantt Chart Generation
+## Gantt Chart Generation
 
-Scheduling results are displayed as a Gantt Chart representation:
+Example:
 
 ```text
 P1 : 0 -> 2
 P2 : 2 -> 4
 P1 : 4 -> 6
 P3 : 6 -> 7
-...
+P2 : 7 -> 9
+P4 : 9 -> 11
 ```
 
 ---
 
-### Algorithm Comparison
+## Scheduling Comparison
 
-Algorithms can be compared using:
+Algorithms can be compared using performance metrics.
 
-| Algorithm   | Avg Waiting Time | Avg Turnaround Time | CPU Utilization |
-| ----------- | ---------------- | ------------------- | --------------- |
-| FCFS        | ✓                | ✓                   | ✓               |
-| SJF         | ✓                | ✓                   | ✓               |
-| Priority    | ✓                | ✓                   | ✓               |
-| Round Robin | ✓                | ✓                   | ✓               |
+| Algorithm   | Waiting Time | Turnaround Time | CPU Utilization |
+| ----------- | ------------ | --------------- | --------------- |
+| FCFS        | ✓            | ✓               | ✓               |
+| SJF         | ✓            | ✓               | ✓               |
+| Priority    | ✓            | ✓               | ✓               |
+| Round Robin | ✓            | ✓               | ✓               |
+
+---
+
+# Memory Management
+
+The simulator includes dynamic memory allocation mechanisms similar to those used by operating systems.
+
+---
+
+## Memory Allocation Algorithms
+
+### First Fit
+
+Allocates memory in the first free block large enough for the process.
+
+### Best Fit
+
+Allocates memory in the smallest suitable free block.
+
+### Worst Fit
+
+Allocates memory in the largest available free block.
+
+---
+
+## Memory Operations
+
+### Allocation
+
+Example:
+
+```text
+[FREE 1024 MB]
+
+P1 = 200 MB
+```
+
+Result:
+
+```text
+[P1 200 MB][FREE 824 MB]
+```
+
+---
+
+### Deallocation
+
+Example:
+
+```text
+[P1][P2][P3][FREE]
+```
+
+Remove P2:
+
+```text
+[P1][FREE][P3][FREE]
+```
+
+---
+
+### Free Block Merging
+
+Adjacent free blocks are automatically merged.
+
+Before:
+
+```text
+[FREE 300 MB][FREE 374 MB]
+```
+
+After:
+
+```text
+[FREE 674 MB]
+```
+
+---
+
+## Fragmentation Testing
+
+The simulator supports custom fragmentation scenarios to compare allocation algorithms.
+
+Implemented:
+
+* Memory allocation testing
+* Memory deallocation testing
+* Free block merging
+* Fragmentation analysis scenarios
 
 ---
 
@@ -87,36 +189,9 @@ MiniOS-Simulator
 ├── main.py
 ├── process.py
 ├── scheduler.py
-└── README.md
-```
-
----
-
-## Example Process Input
-
-```python
-Process("P1", 0, 7, 3, 200)
-Process("P2", 2, 4, 1, 300)
-Process("P3", 4, 1, 4, 150)
-Process("P4", 5, 4, 2, 250)
-```
-
----
-
-## Example Output
-
-```text
-FCFS Scheduling
-
-Average Waiting Time: 4.75
-Average Turnaround Time: 8.75
-CPU Utilization: 100%
-
-SJF Scheduling
-
-Average Waiting Time: 4.00
-Average Turnaround Time: 8.00
-CPU Utilization: 100%
+├── memory.py
+├── README.md
+└── requirements.txt
 ```
 
 ---
@@ -126,7 +201,7 @@ CPU Utilization: 100%
 * Python 3
 * Object-Oriented Programming (OOP)
 
-Planned:
+Future:
 
 * Streamlit
 * Plotly
@@ -134,44 +209,77 @@ Planned:
 
 ---
 
-## Future Improvements
+## Development Progress
 
-### Memory Management
+### Completed
 
-* First Fit
-* Best Fit
-* Worst Fit
-* Memory Fragmentation Analysis
+* Process Management
+* FCFS Scheduling
+* SJF Scheduling
+* Priority Scheduling
+* Round Robin Scheduling
+* CPU Metrics
+* Gantt Chart Generation
+* Scheduling Comparison
+* Memory Block Structure
+* First Fit Allocation
+* Best Fit Allocation
+* Worst Fit Allocation
+* Memory Deallocation
+* Free Block Merging
+* Fragmentation Test Infrastructure
 
-### Process State Visualization
+### In Progress
 
-* READY
-* RUNNING
-* WAITING
-* TERMINATED
+* Memory Statistics
+* External Fragmentation Metrics
 
-### Deadlock Detection
+### Planned
 
+* Process Waiting State (I/O Simulation)
+* Deadlock Detection
 * Resource Allocation Graph
-* Deadlock Detection Algorithms
-
-### Interactive Dashboard
-
-* Streamlit Interface
+* Streamlit Dashboard
+* Interactive Visualization
 * Real-Time Simulation
-* Interactive Charts
 
 ---
 
 ## Educational Objectives
 
-This project was developed to better understand:
+This project aims to provide hands-on experience with:
 
-* Process Scheduling
-* CPU Resource Management
 * Operating System Fundamentals
-* Performance Analysis
-* Algorithm Comparison
+* CPU Scheduling
+* Memory Management
+* Fragmentation Analysis
+* Resource Allocation
+* Performance Evaluation
+
+---
+
+## Future Roadmap
+
+### Phase 1
+
+* Memory Statistics
+* Fragmentation Metrics
+
+### Phase 2
+
+* I/O Waiting Simulation
+* Process State Transitions
+
+### Phase 3
+
+* Deadlock Detection
+* Resource Allocation Graph
+
+### Phase 4
+
+* Streamlit Dashboard
+* Interactive Visualizations
+* Real-Time Simulation
 
 ---
 
@@ -180,4 +288,5 @@ This project was developed to better understand:
 Arda Alan
 
 Computer Engineering Student
+
 Düzce University
