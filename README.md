@@ -213,35 +213,40 @@ Future:
 
 ### Completed
 
-* Process Management
-* FCFS Scheduling
-* SJF Scheduling
-* Priority Scheduling
-* Round Robin Scheduling
-* CPU Metrics
-* Gantt Chart Generation
-* Scheduling Comparison
-* Memory Block Structure
-* First Fit Allocation
-* Best Fit Allocation
-* Worst Fit Allocation
-* Memory Deallocation
-* Free Block Merging
-* Fragmentation Test Infrastructure
+✔ Process Management
+✔ FCFS Scheduling
+✔ SJF Scheduling
+✔ Priority Scheduling
+✔ Round Robin Scheduling
+✔ CPU Metrics
+✔ Gantt Chart Generation
+✔ Scheduling Comparison
 
-### In Progress
+✔ Memory Block Structure
+✔ First Fit Allocation
+✔ Best Fit Allocation
+✔ Worst Fit Allocation
+✔ Memory Deallocation
+✔ Free Block Merging
+✔ Memory Statistics
+✔ External Fragmentation Analysis
+✔ Memory Comparison Table
+✔ Memory Visualization
 
-* Memory Statistics
-* External Fragmentation Metrics
+✔ CPU Test Infrastructure
+✔ Memory Test Infrastructure
 
-### Planned
+In Progress:
+ I/O Waiting System
 
-* Process Waiting State (I/O Simulation)
-* Deadlock Detection
-* Resource Allocation Graph
-* Streamlit Dashboard
-* Interactive Visualization
-* Real-Time Simulation
+Planned:
+ Process State Transitions
+ Deadlock Detection
+ Resource Allocation Graph
+ Streamlit Dashboard
+ Interactive Visualization
+ Real-Time Simulation
+
 
 ---
 
