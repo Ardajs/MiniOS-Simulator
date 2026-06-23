@@ -2,17 +2,28 @@
 
 A simplified Operating System Simulator developed in Python to demonstrate fundamental operating system concepts such as process management, CPU scheduling, memory management, and resource allocation.
 
-## Project Overview
+---
 
-Modern operating systems such as Windows and Linux manage hardware resources efficiently while allowing multiple processes to run concurrently. This project aims to simulate core operating system mechanisms in an educational and interactive way.
+# Project Overview
 
-The simulator provides implementations of common CPU scheduling algorithms and performance analysis tools, allowing users to compare scheduling strategies and observe their effects on system performance.
+Modern operating systems such as Windows and Linux manage processes, memory, and hardware resources simultaneously.
+
+MiniOS Simulator provides a simplified educational model of these mechanisms by implementing:
+
+* Process Management
+* CPU Scheduling
+* Memory Management
+* I/O Waiting Simulation
+* Performance Metrics
+* Fragmentation Analysis
+
+The goal of the project is to help students understand operating system concepts through practical simulation and visualization.
 
 ---
 
-## Implemented Features
+# Features
 
-### Process Management
+## Process Management
 
 Each process contains:
 
@@ -29,24 +40,27 @@ Supported states:
 NEW
 READY
 RUNNING
+WAITING
 TERMINATED
 ```
 
 ---
 
-## CPU Scheduling Algorithms
+# CPU Scheduling Module
+
+Implemented scheduling algorithms:
 
 ### FCFS (First Come First Serve)
 
-Processes are executed according to their arrival order.
+Processes are executed according to arrival order.
 
 ### SJF (Shortest Job First)
 
-The shortest available job is selected first.
+The shortest available process is selected first.
 
 ### Priority Scheduling
 
-Processes are selected based on priority values.
+Processes are selected according to priority values.
 
 ### Round Robin
 
@@ -54,7 +68,7 @@ Time-sharing scheduling using configurable time quantum.
 
 ---
 
-## Scheduling Metrics
+## CPU Metrics
 
 The simulator calculates:
 
@@ -74,27 +88,24 @@ P2 : 2 -> 4
 P1 : 4 -> 6
 P3 : 6 -> 7
 P2 : 7 -> 9
-P4 : 9 -> 11
 ```
 
 ---
 
 ## Scheduling Comparison
 
-Algorithms can be compared using performance metrics.
+Implemented comparison between:
 
-| Algorithm   | Waiting Time | Turnaround Time | CPU Utilization |
-| ----------- | ------------ | --------------- | --------------- |
-| FCFS        | ✓            | ✓               | ✓               |
-| SJF         | ✓            | ✓               | ✓               |
-| Priority    | ✓            | ✓               | ✓               |
-| Round Robin | ✓            | ✓               | ✓               |
+* FCFS
+* SJF
+* Priority Scheduling
+* Round Robin
 
 ---
 
-# Memory Management
+# Memory Management Module
 
-The simulator includes dynamic memory allocation mechanisms similar to those used by operating systems.
+The simulator supports dynamic memory allocation strategies.
 
 ---
 
@@ -102,7 +113,7 @@ The simulator includes dynamic memory allocation mechanisms similar to those use
 
 ### First Fit
 
-Allocates memory in the first free block large enough for the process.
+Allocates memory in the first available block large enough for the process.
 
 ### Best Fit
 
@@ -116,7 +127,7 @@ Allocates memory in the largest available free block.
 
 ## Memory Operations
 
-### Allocation
+### Memory Allocation
 
 Example:
 
@@ -134,7 +145,7 @@ Result:
 
 ---
 
-### Deallocation
+### Memory Deallocation
 
 Example:
 
@@ -142,7 +153,7 @@ Example:
 [P1][P2][P3][FREE]
 ```
 
-Remove P2:
+After removing P2:
 
 ```text
 [P1][FREE][P3][FREE]
@@ -154,13 +165,13 @@ Remove P2:
 
 Adjacent free blocks are automatically merged.
 
-Before:
+Example:
 
 ```text
 [FREE 300 MB][FREE 374 MB]
 ```
 
-After:
+↓
 
 ```text
 [FREE 674 MB]
@@ -168,20 +179,120 @@ After:
 
 ---
 
-## Fragmentation Testing
+## Memory Statistics
 
-The simulator supports custom fragmentation scenarios to compare allocation algorithms.
+The simulator provides:
 
-Implemented:
+* Total Memory
+* Used Memory
+* Free Memory
+* Number of Free Blocks
+* Largest Free Block
+* Memory Utilization
 
-* Memory allocation testing
-* Memory deallocation testing
-* Free block merging
-* Fragmentation analysis scenarios
+Example:
+
+```text
+Total Memory: 1024 MB
+Used Memory: 600 MB
+Free Memory: 424 MB
+Free Blocks: 2
+Largest Free Block: 300 MB
+Memory Utilization: 58.59%
+```
 
 ---
 
-## Project Structure
+## Fragmentation Analysis
+
+External fragmentation is calculated as:
+
+```text
+External Fragmentation =
+Total Free Memory - Largest Free Block
+```
+
+Example:
+
+```text
+Free Memory = 424 MB
+Largest Free Block = 300 MB
+
+External Fragmentation = 124 MB
+```
+
+---
+
+## Memory Visualization
+
+Example:
+
+```text
+| P1 200MB | FREE 300MB | P3 150MB | P4 250MB |
+```
+
+---
+
+# I/O Waiting Module
+
+The simulator supports process waiting states caused by I/O operations.
+
+---
+
+## Single Process I/O Simulation
+
+Example:
+
+```text
+RUNNING
+↓
+WAITING
+↓
+RUNNING
+↓
+TERMINATED
+```
+
+---
+
+## Multi Process I/O Simulation
+
+When a process enters WAITING state:
+
+```text
+P1 WAITING
+CPU switches to P2
+CPU switches to P3
+P1 becomes READY again
+```
+
+---
+
+## I/O Metrics
+
+The simulator calculates:
+
+* Completion Time
+* Turnaround Time
+* Waiting Time
+* I/O Waiting Time
+* CPU Utilization
+
+---
+
+# Testing Infrastructure
+
+Dedicated test files are included:
+
+```text
+scheduler_test.py
+memory_test.py
+io_test.py
+```
+
+---
+
+# Project Structure
 
 ```text
 MiniOS-Simulator
@@ -189,19 +300,23 @@ MiniOS-Simulator
 ├── main.py
 ├── process.py
 ├── scheduler.py
+├── scheduler_test.py
 ├── memory.py
+├── memory_test.py
+├── io_simulation.py
+├── io_test.py
 ├── README.md
 └── requirements.txt
 ```
 
 ---
 
-## Technologies Used
+# Technologies Used
 
 * Python 3
 * Object-Oriented Programming (OOP)
 
-Future:
+Future Technologies:
 
 * Streamlit
 * Plotly
@@ -209,86 +324,84 @@ Future:
 
 ---
 
-## Development Progress
+# Development Progress
 
-### Completed
+## Completed
 
-✔ Process Management
-✔ FCFS Scheduling
-✔ SJF Scheduling
-✔ Priority Scheduling
-✔ Round Robin Scheduling
-✔ CPU Metrics
-✔ Gantt Chart Generation
-✔ Scheduling Comparison
+### Process Management
 
-✔ Memory Block Structure
-✔ First Fit Allocation
-✔ Best Fit Allocation
-✔ Worst Fit Allocation
-✔ Memory Deallocation
-✔ Free Block Merging
-✔ Memory Statistics
-✔ External Fragmentation Analysis
-✔ Memory Comparison Table
-✔ Memory Visualization
+* Process Creation
+* Process States
 
-✔ CPU Test Infrastructure
-✔ Memory Test Infrastructure
+### CPU Scheduling
 
-In Progress:
- I/O Waiting System
+* FCFS
+* SJF
+* Priority Scheduling
+* Round Robin
+* Gantt Chart
+* Performance Metrics
+* Scheduling Comparison
 
-Planned:
- Process State Transitions
- Deadlock Detection
- Resource Allocation Graph
- Streamlit Dashboard
- Interactive Visualization
- Real-Time Simulation
+### Memory Management
 
-
----
-
-## Educational Objectives
-
-This project aims to provide hands-on experience with:
-
-* Operating System Fundamentals
-* CPU Scheduling
-* Memory Management
-* Fragmentation Analysis
-* Resource Allocation
-* Performance Evaluation
-
----
-
-## Future Roadmap
-
-### Phase 1
-
+* First Fit
+* Best Fit
+* Worst Fit
+* Memory Deallocation
+* Free Block Merging
 * Memory Statistics
-* Fragmentation Metrics
+* External Fragmentation Analysis
+* Memory Comparison
+* Memory Visualization
 
-### Phase 2
+### I/O Waiting
 
-* I/O Waiting Simulation
-* Process State Transitions
+* Single Process I/O
+* Multi Process I/O
+* WAITING State
+* I/O Metrics
 
-### Phase 3
+### Testing
+
+* CPU Scheduling Tests
+* Memory Management Tests
+* I/O Simulation Tests
+
+---
+
+## In Progress
 
 * Deadlock Detection
-* Resource Allocation Graph
-
-### Phase 4
-
-* Streamlit Dashboard
-* Interactive Visualizations
-* Real-Time Simulation
 
 ---
 
-## Author
+## Planned
+
+* Resource Allocation Graph
+* Deadlock Visualization
+* Streamlit Dashboard
+* Interactive Charts
+* Real-Time Simulation
+* Process Visualization
+
+---
+
+# Educational Objectives
+
+This project helps students understand:
+
+* Operating System Fundamentals
+* CPU Scheduling Algorithms
+* Memory Allocation Strategies
+* Fragmentation Analysis
+* Process State Transitions
+* I/O Management
+* System Performance Evaluation
+
+---
+
+# Author
 
 Arda Alan
 
