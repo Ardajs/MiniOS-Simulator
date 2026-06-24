@@ -1,6 +1,6 @@
 # MiniOS Simulator
 
-A simplified Operating System Simulator developed in Python to demonstrate fundamental operating system concepts such as process management, CPU scheduling, memory management, and resource allocation.
+A Python-based Operating System Simulator developed to demonstrate core operating system concepts including Process Management, CPU Scheduling, Memory Management, I/O Waiting, Deadlock Detection, and System Performance Analysis.
 
 ---
 
@@ -8,16 +8,16 @@ A simplified Operating System Simulator developed in Python to demonstrate funda
 
 Modern operating systems such as Windows and Linux manage processes, memory, and hardware resources simultaneously.
 
-MiniOS Simulator provides a simplified educational model of these mechanisms by implementing:
+MiniOS Simulator provides an educational and interactive environment for understanding how operating systems work internally by simulating:
 
 * Process Management
 * CPU Scheduling
 * Memory Management
-* I/O Waiting Simulation
-* Performance Metrics
-* Fragmentation Analysis
+* I/O Waiting Operations
+* Deadlock Detection and Recovery
+* System Performance Metrics
 
-The goal of the project is to help students understand operating system concepts through practical simulation and visualization.
+The project is designed for Computer Engineering students who want to learn operating system concepts through practical implementation.
 
 ---
 
@@ -34,7 +34,7 @@ Each process contains:
 * Memory Requirement
 * Process State
 
-Supported states:
+Supported Process States:
 
 ```text
 NEW
@@ -48,27 +48,27 @@ TERMINATED
 
 # CPU Scheduling Module
 
-Implemented scheduling algorithms:
+The simulator implements classical CPU Scheduling algorithms.
 
-### FCFS (First Come First Serve)
+## FCFS (First Come First Serve)
 
 Processes are executed according to arrival order.
 
-### SJF (Shortest Job First)
+## SJF (Shortest Job First)
 
-The shortest available process is selected first.
+The process with the shortest burst time is selected first.
 
-### Priority Scheduling
+## Priority Scheduling
 
-Processes are selected according to priority values.
+Processes are selected according to their priority value.
 
-### Round Robin
+## Round Robin Scheduling
 
 Time-sharing scheduling using configurable time quantum.
 
 ---
 
-## CPU Metrics
+## CPU Performance Metrics
 
 The simulator calculates:
 
@@ -94,18 +94,24 @@ P2 : 7 -> 9
 
 ## Scheduling Comparison
 
-Implemented comparison between:
+Comparison between:
 
 * FCFS
 * SJF
 * Priority Scheduling
 * Round Robin
 
+based on:
+
+* Waiting Time
+* Turnaround Time
+* CPU Utilization
+
 ---
 
 # Memory Management Module
 
-The simulator supports dynamic memory allocation strategies.
+The simulator supports dynamic memory allocation techniques commonly used in operating systems.
 
 ---
 
@@ -113,7 +119,7 @@ The simulator supports dynamic memory allocation strategies.
 
 ### First Fit
 
-Allocates memory in the first available block large enough for the process.
+Allocates memory in the first free block large enough to satisfy the request.
 
 ### Best Fit
 
@@ -125,19 +131,15 @@ Allocates memory in the largest available free block.
 
 ---
 
-## Memory Operations
+## Memory Allocation Example
 
-### Memory Allocation
-
-Example:
+Initial Memory:
 
 ```text
 [FREE 1024 MB]
-
-P1 = 200 MB
 ```
 
-Result:
+After allocating P1 (200 MB):
 
 ```text
 [P1 200 MB][FREE 824 MB]
@@ -145,9 +147,11 @@ Result:
 
 ---
 
-### Memory Deallocation
+## Memory Deallocation
 
 Example:
+
+Before:
 
 ```text
 [P1][P2][P3][FREE]
@@ -161,17 +165,17 @@ After removing P2:
 
 ---
 
-### Free Block Merging
+## Free Block Merging
 
 Adjacent free blocks are automatically merged.
 
-Example:
+Before:
 
 ```text
 [FREE 300 MB][FREE 374 MB]
 ```
 
-↓
+After:
 
 ```text
 [FREE 674 MB]
@@ -203,9 +207,9 @@ Memory Utilization: 58.59%
 
 ---
 
-## Fragmentation Analysis
+## External Fragmentation Analysis
 
-External fragmentation is calculated as:
+External Fragmentation is calculated as:
 
 ```text
 External Fragmentation =
@@ -230,6 +234,24 @@ Example:
 ```text
 | P1 200MB | FREE 300MB | P3 150MB | P4 250MB |
 ```
+
+---
+
+## Memory Comparison
+
+Comparison between:
+
+* First Fit
+* Best Fit
+* Worst Fit
+
+using:
+
+* Used Memory
+* Free Memory
+* Number of Free Blocks
+* Largest Free Block
+* External Fragmentation
 
 ---
 
@@ -264,6 +286,7 @@ P1 WAITING
 CPU switches to P2
 CPU switches to P3
 P1 becomes READY again
+P1 resumes execution
 ```
 
 ---
@@ -280,14 +303,97 @@ The simulator calculates:
 
 ---
 
+# Deadlock Detection Module
+
+The simulator supports resource allocation and deadlock analysis using a Resource Allocation Graph.
+
+---
+
+## Resource Management
+
+Resources can be:
+
+```text
+Allocated
+Requested
+Released
+```
+
+by processes.
+
+---
+
+## Resource Allocation Graph
+
+Example:
+
+```text
+P1 -> R2
+R2 -> P2
+P2 -> R1
+R1 -> P1
+```
+
+---
+
+## Deadlock Detection
+
+The simulator automatically detects cycles in the Resource Allocation Graph.
+
+Example Output:
+
+```text
+DEADLOCK DETECTED
+```
+
+---
+
+## Deadlock Cycle Visualization
+
+The simulator displays the exact cycle causing the deadlock.
+
+Example:
+
+```text
+Deadlock Cycle:
+
+P1 -> R2 -> P2 -> R1 -> P1
+```
+
+---
+
+## Deadlock Recovery
+
+Recovery is performed by:
+
+1. Selecting a victim process
+2. Terminating the process
+3. Releasing its resources
+4. Rechecking the system
+
+Example:
+
+```text
+Deadlock Recovery Started
+
+Terminating P1...
+
+R1 released from P1
+
+NO DEADLOCK
+```
+
+---
+
 # Testing Infrastructure
 
-Dedicated test files are included:
+The project includes dedicated test modules.
 
 ```text
 scheduler_test.py
 memory_test.py
 io_test.py
+deadlock_test.py
 ```
 
 ---
@@ -305,6 +411,8 @@ MiniOS-Simulator
 ├── memory_test.py
 ├── io_simulation.py
 ├── io_test.py
+├── deadlock.py
+├── deadlock_test.py
 ├── README.md
 └── requirements.txt
 ```
@@ -316,7 +424,7 @@ MiniOS-Simulator
 * Python 3
 * Object-Oriented Programming (OOP)
 
-Future Technologies:
+Planned:
 
 * Streamlit
 * Plotly
@@ -339,7 +447,7 @@ Future Technologies:
 * SJF
 * Priority Scheduling
 * Round Robin
-* Gantt Chart
+* Gantt Chart Generation
 * Performance Metrics
 * Scheduling Comparison
 
@@ -348,42 +456,47 @@ Future Technologies:
 * First Fit
 * Best Fit
 * Worst Fit
+* Memory Allocation
 * Memory Deallocation
 * Free Block Merging
 * Memory Statistics
 * External Fragmentation Analysis
-* Memory Comparison
 * Memory Visualization
+* Memory Comparison
 
 ### I/O Waiting
 
-* Single Process I/O
-* Multi Process I/O
+* Single Process I/O Simulation
+* Multi Process I/O Simulation
 * WAITING State
 * I/O Metrics
+
+### Deadlock Detection
+
+* Resource Allocation
+* Resource Requests
+* Resource Allocation Graph
+* Cycle Detection
+* Deadlock Detection
+* Deadlock Cycle Visualization
+* Deadlock Recovery
 
 ### Testing
 
 * CPU Scheduling Tests
 * Memory Management Tests
 * I/O Simulation Tests
+* Deadlock Tests
 
 ---
 
-## In Progress
+## Planned Features
 
-* Deadlock Detection
-
----
-
-## Planned
-
-* Resource Allocation Graph
-* Deadlock Visualization
 * Streamlit Dashboard
 * Interactive Charts
-* Real-Time Simulation
-* Process Visualization
+* Real-Time Visualization
+* Process Timeline Visualization
+* Resource Monitoring Dashboard
 
 ---
 
@@ -397,6 +510,7 @@ This project helps students understand:
 * Fragmentation Analysis
 * Process State Transitions
 * I/O Management
+* Deadlock Detection and Recovery
 * System Performance Evaluation
 
 ---
