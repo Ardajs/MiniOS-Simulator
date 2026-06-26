@@ -458,16 +458,18 @@ MiniOS-Simulator
 
 ---
 
-# Technologies Used
+## Core Technologies
 
-* Python 3
-* Object-Oriented Programming (OOP)
+- Python 3
+- Object-Oriented Programming (OOP)
+- Streamlit
+- Plotly
+- Pandas
 
-Planned:
+Future Integrations
 
-* Streamlit
-* Plotly
-* Matplotlib
+- Matplotlib
+- NetworkX
 
 ---
 
