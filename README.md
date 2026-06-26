@@ -479,66 +479,84 @@ Future Integrations
 
 ### Process Management
 
-* Process Creation
-* Process States
+- Process Creation
+- Process States
+- State Transitions
 
 ### CPU Scheduling
 
-* FCFS
-* SJF
-* Priority Scheduling
-* Round Robin
-* Gantt Chart Generation
-* Performance Metrics
-* Scheduling Comparison
+- FCFS
+- SJF
+- Priority Scheduling
+- Round Robin
+- Gantt Chart
+- Interactive Gantt Visualization
+- Performance Metrics
+- Scheduling Comparison
+- Best Algorithm Recommendation
 
 ### Memory Management
 
-* First Fit
-* Best Fit
-* Worst Fit
-* Memory Allocation
-* Memory Deallocation
-* Free Block Merging
-* Memory Statistics
-* External Fragmentation Analysis
-* Memory Visualization
-* Memory Comparison
+- First Fit
+- Best Fit
+- Worst Fit
+- Memory Allocation
+- Memory Deallocation
+- Free Block Merging
+- Memory Statistics
+- External Fragmentation Analysis
+- Memory Visualization
+- Memory Comparison
+- Interactive Fragmentation Scenario
 
 ### I/O Waiting
 
-* Single Process I/O Simulation
-* Multi Process I/O Simulation
-* WAITING State
-* I/O Metrics
+- Single Process Simulation
+- Multi Process Simulation
+- WAITING State
+- I/O Metrics
 
 ### Deadlock Detection
 
-* Resource Allocation
-* Resource Requests
-* Resource Allocation Graph
-* Cycle Detection
-* Deadlock Detection
-* Deadlock Cycle Visualization
-* Deadlock Recovery
+- Resource Allocation
+- Resource Requests
+- Resource Allocation Graph
+- Cycle Detection
+- Deadlock Detection
+- Deadlock Cycle Visualization
+- Deadlock Recovery
+
+### Dashboard
+
+- Home Page
+- CPU Scheduling Dashboard
+- Memory Management Dashboard
 
 ### Testing
 
-* CPU Scheduling Tests
-* Memory Management Tests
-* I/O Simulation Tests
-* Deadlock Tests
+- CPU Scheduling Tests
+- Memory Tests
+- I/O Tests
+- Deadlock Tests
+
+---
+
+## Currently In Development
+
+- I/O Dashboard
+- Deadlock Dashboard
+- System Report Dashboard
 
 ---
 
 ## Planned Features
 
-* Streamlit Dashboard
-* Interactive Charts
-* Real-Time Visualization
-* Process Timeline Visualization
-* Resource Monitoring Dashboard
-
+- Real-Time Simulation
+- Process Timeline Animation
+- Resource Monitoring Dashboard
+- Interactive Process Creation
+- Interactive Memory Allocation
+- Export Simulation Report
 ---
 
 # Educational Objectives
