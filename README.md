@@ -442,6 +442,7 @@ The project now includes an interactive Streamlit-based dashboard that allows us
 ```text
 MiniOS-Simulator
 │
+├── app.py
 ├── main.py
 ├── process.py
 ├── scheduler.py
@@ -452,6 +453,7 @@ MiniOS-Simulator
 ├── io_test.py
 ├── deadlock.py
 ├── deadlock_test.py
+├── system_report.py
 ├── README.md
 └── requirements.txt
 ```
