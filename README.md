@@ -398,6 +398,45 @@ deadlock_test.py
 
 ---
 
+
+# Streamlit Dashboard
+
+The project now includes an interactive Streamlit-based dashboard that allows users to simulate and visualize operating system components through a graphical interface.
+
+## Dashboard Features
+
+### Home
+
+- Project overview
+- Module navigation
+
+### CPU Scheduling Dashboard
+
+- Process table
+- Algorithm selection
+- Round Robin quantum configuration
+- Interactive Gantt Chart
+- Gantt Chart visualization
+- Performance metrics
+- Algorithm comparison table
+- Best algorithm recommendation
+
+### Memory Management Dashboard
+
+- Total memory configuration
+- Allocation algorithm selection
+- Memory layout visualization
+- Memory statistics
+- External fragmentation analysis
+- Interactive fragmentation scenario
+- Memory allocation visualization
+
+### Planned Dashboard Modules
+
+- I/O Waiting Dashboard
+- Deadlock Dashboard
+- System Summary Dashboard
+
 # Project Structure
 
 ```text
