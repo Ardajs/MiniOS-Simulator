@@ -1,23 +1,18 @@
 # MiniOS Simulator
 
-A Python-based Operating System Simulator developed to demonstrate core operating system concepts including Process Management, CPU Scheduling, Memory Management, I/O Waiting, Deadlock Detection, and System Performance Analysis.
+An interactive Operating System simulator developed in Python to demonstrate core operating system concepts including Process Management, CPU Scheduling, Memory Management, I/O Waiting, and Deadlock Detection.
+
+The project provides both a console-based simulator and a modern Streamlit dashboard for visualizing how operating systems manage processes and hardware resources.
 
 ---
 
 # Project Overview
 
-Modern operating systems such as Windows and Linux manage processes, memory, and hardware resources simultaneously.
+Operating systems are one of the most important software layers in computer systems. They are responsible for managing CPU time, memory, processes, I/O devices, and shared resources.
 
-MiniOS Simulator provides an educational and interactive environment for understanding how operating systems work internally by simulating:
+MiniOS Simulator is an educational project that simplifies these concepts into an interactive simulation platform. Instead of explaining algorithms only theoretically, this project allows users to visualize how an operating system behaves under different scenarios.
 
-* Process Management
-* CPU Scheduling
-* Memory Management
-* I/O Waiting Operations
-* Deadlock Detection and Recovery
-* System Performance Metrics
-
-The project is designed for Computer Engineering students who want to learn operating system concepts through practical implementation.
+The simulator was developed as an Operating Systems course project and aims to provide a practical understanding of classical operating system algorithms.
 
 ---
 
@@ -25,453 +20,352 @@ The project is designed for Computer Engineering students who want to learn oper
 
 ## Process Management
 
-Each process contains:
+- Process Creation
+- Process States
+- State Transitions
+- Process Information Management
 
-* Process ID (PID)
-* Arrival Time
-* Burst Time
-* Priority
-* Memory Requirement
-* Process State
+Supported states
 
-Supported Process States:
-
-```text
-NEW
-READY
-RUNNING
-WAITING
-TERMINATED
-```
+- NEW
+- READY
+- RUNNING
+- WAITING
+- TERMINATED
 
 ---
 
-# CPU Scheduling Module
+## CPU Scheduling
 
-The simulator implements classical CPU Scheduling algorithms.
+Implemented algorithms
 
-## FCFS (First Come First Serve)
+- FCFS (First Come First Serve)
+- SJF (Shortest Job First)
+- Priority Scheduling
+- Round Robin Scheduling
 
-Processes are executed according to arrival order.
+Performance metrics
 
-## SJF (Shortest Job First)
+- Average Waiting Time
+- Average Turnaround Time
+- CPU Utilization
 
-The process with the shortest burst time is selected first.
+Visualization
 
-## Priority Scheduling
-
-Processes are selected according to their priority value.
-
-## Round Robin Scheduling
-
-Time-sharing scheduling using configurable time quantum.
-
----
-
-## CPU Performance Metrics
-
-The simulator calculates:
-
-* Average Waiting Time
-* Average Turnaround Time
-* CPU Utilization
+- Gantt Chart
+- Interactive Gantt Chart
+- Algorithm Comparison Table
+- Best Algorithm Recommendation
 
 ---
 
-## Gantt Chart Generation
+## Memory Management
 
-Example:
+Implemented algorithms
 
-```text
-P1 : 0 -> 2
-P2 : 2 -> 4
-P1 : 4 -> 6
-P3 : 6 -> 7
-P2 : 7 -> 9
-```
+- First Fit
+- Best Fit
+- Worst Fit
 
----
+Features
 
-## Scheduling Comparison
-
-Comparison between:
-
-* FCFS
-* SJF
-* Priority Scheduling
-* Round Robin
-
-based on:
-
-* Waiting Time
-* Turnaround Time
-* CPU Utilization
+- Memory Allocation
+- Memory Deallocation
+- Free Block Merging
+- External Fragmentation Analysis
+- Memory Statistics
+- Memory Usage Visualization
+- Interactive Fragmentation Scenario
 
 ---
 
-# Memory Management Module
-
-The simulator supports dynamic memory allocation techniques commonly used in operating systems.
-
----
-
-## Memory Allocation Algorithms
-
-### First Fit
-
-Allocates memory in the first free block large enough to satisfy the request.
-
-### Best Fit
-
-Allocates memory in the smallest suitable free block.
-
-### Worst Fit
-
-Allocates memory in the largest available free block.
-
----
-
-## Memory Allocation Example
-
-Initial Memory:
-
-```text
-[FREE 1024 MB]
-```
-
-After allocating P1 (200 MB):
-
-```text
-[P1 200 MB][FREE 824 MB]
-```
-
----
-
-## Memory Deallocation
-
-Example:
-
-Before:
-
-```text
-[P1][P2][P3][FREE]
-```
-
-After removing P2:
-
-```text
-[P1][FREE][P3][FREE]
-```
-
----
-
-## Free Block Merging
-
-Adjacent free blocks are automatically merged.
-
-Before:
-
-```text
-[FREE 300 MB][FREE 374 MB]
-```
-
-After:
-
-```text
-[FREE 674 MB]
-```
-
----
-
-## Memory Statistics
-
-The simulator provides:
-
-* Total Memory
-* Used Memory
-* Free Memory
-* Number of Free Blocks
-* Largest Free Block
-* Memory Utilization
-
-Example:
-
-```text
-Total Memory: 1024 MB
-Used Memory: 600 MB
-Free Memory: 424 MB
-Free Blocks: 2
-Largest Free Block: 300 MB
-Memory Utilization: 58.59%
-```
-
----
-
-## External Fragmentation Analysis
-
-External Fragmentation is calculated as:
-
-```text
-External Fragmentation =
-Total Free Memory - Largest Free Block
-```
-
-Example:
-
-```text
-Free Memory = 424 MB
-Largest Free Block = 300 MB
-
-External Fragmentation = 124 MB
-```
-
----
-
-## Memory Visualization
-
-Example:
-
-```text
-| P1 200MB | FREE 300MB | P3 150MB | P4 250MB |
-```
-
----
-
-## Memory Comparison
-
-Comparison between:
-
-* First Fit
-* Best Fit
-* Worst Fit
-
-using:
-
-* Used Memory
-* Free Memory
-* Number of Free Blocks
-* Largest Free Block
-* External Fragmentation
-
----
-
-# I/O Waiting Module
-
-The simulator supports process waiting states caused by I/O operations.
-
----
-
-## Single Process I/O Simulation
-
-Example:
-
-```text
-RUNNING
-↓
-WAITING
-↓
-RUNNING
-↓
-TERMINATED
-```
-
----
-
-## Multi Process I/O Simulation
-
-When a process enters WAITING state:
-
-```text
-P1 WAITING
-CPU switches to P2
-CPU switches to P3
-P1 becomes READY again
-P1 resumes execution
-```
-
----
-
-## I/O Metrics
-
-The simulator calculates:
-
-* Completion Time
-* Turnaround Time
-* Waiting Time
-* I/O Waiting Time
-* CPU Utilization
-
----
-
-# Deadlock Detection Module
-
-The simulator supports resource allocation and deadlock analysis using a Resource Allocation Graph.
-
----
-
-## Resource Management
-
-Resources can be:
-
-```text
-Allocated
-Requested
-Released
-```
-
-by processes.
-
----
-
-## Resource Allocation Graph
-
-Example:
-
-```text
-P1 -> R2
-R2 -> P2
-P2 -> R1
-R1 -> P1
-```
+## I/O Waiting Simulation
+
+Features
+
+- I/O Waiting State
+- READY → RUNNING → WAITING transitions
+- Multiple Process Simulation
+- Event Log
+- I/O Gantt Chart
+- CPU Utilization
+- Waiting Time Analysis
 
 ---
 
 ## Deadlock Detection
 
-The simulator automatically detects cycles in the Resource Allocation Graph.
+Features
 
-Example Output:
-
-```text
-DEADLOCK DETECTED
-```
-
----
-
-## Deadlock Cycle Visualization
-
-The simulator displays the exact cycle causing the deadlock.
-
-Example:
-
-```text
-Deadlock Cycle:
-
-P1 -> R2 -> P2 -> R1 -> P1
-```
+- Resource Allocation
+- Resource Requests
+- Resource Allocation Graph
+- Cycle Detection
+- Deadlock Detection
+- Deadlock Recovery
 
 ---
 
-## Deadlock Recovery
+## Streamlit Dashboard
 
-Recovery is performed by:
+Interactive web interface including
 
-1. Selecting a victim process
-2. Terminating the process
-3. Releasing its resources
-4. Rechecking the system
-
-Example:
-
-```text
-Deadlock Recovery Started
-
-Terminating P1...
-
-R1 released from P1
-
-NO DEADLOCK
-```
+- Home
+- CPU Scheduling
+- Memory Management
+- I/O Waiting
+- Deadlock Detection
+- System Report
 
 ---
 
-# Testing Infrastructure
+# Technologies
 
-The project includes dedicated test modules.
-
-```text
-scheduler_test.py
-memory_test.py
-io_test.py
-deadlock_test.py
-```
-
----
-
-
-# Streamlit Dashboard
-
-The project now includes an interactive Streamlit-based dashboard that allows users to simulate and visualize operating system components through a graphical interface.
-
-## Dashboard Features
-
-### Home
-
-- Project overview
-- Module navigation
-
-### CPU Scheduling Dashboard
-
-- Process table
-- Algorithm selection
-- Round Robin quantum configuration
-- Interactive Gantt Chart
-- Gantt Chart visualization
-- Performance metrics
-- Algorithm comparison table
-- Best algorithm recommendation
-
-### Memory Management Dashboard
-
-- Total memory configuration
-- Allocation algorithm selection
-- Memory layout visualization
-- Memory statistics
-- External fragmentation analysis
-- Interactive fragmentation scenario
-- Memory allocation visualization
-
-### Planned Dashboard Modules
-
-- I/O Waiting Dashboard
-- Deadlock Dashboard
-- System Summary Dashboard
-
-# Project Structure
-
-```text
-MiniOS-Simulator
-│
-├── app.py
-├── main.py
-├── process.py
-├── scheduler.py
-├── scheduler_test.py
-├── memory.py
-├── memory_test.py
-├── io_simulation.py
-├── io_test.py
-├── deadlock.py
-├── deadlock_test.py
-├── system_report.py
-├── README.md
-└── requirements.txt
-```
-
----
-
-## Core Technologies
+Core Technologies
 
 - Python 3
-- Object-Oriented Programming (OOP)
 - Streamlit
 - Plotly
 - Pandas
 
-Future Integrations
+Programming Concepts
 
-- Matplotlib
-- NetworkX
+- Object-Oriented Programming
+- Data Structures
+- Scheduling Algorithms
+- Memory Allocation Algorithms
+- Graph Algorithms
+
+---
+
+# Project Structure
+
+```
+MiniOS-Simulator
+│
+├── app.py
+│
+├── views/
+│   ├── home.py
+│   ├── cpu.py
+│   ├── memory_page.py
+│   ├── io_page.py
+│   ├── deadlock_page.py
+│   └── system_report_page.py
+│
+├── components/
+│   ├── styles.py
+│   └── ui.py
+│
+├── process.py
+├── scheduler.py
+├── memory.py
+├── io_simulation.py
+├── deadlock.py
+├── system_report.py
+│
+├── scheduler_test.py
+├── memory_test.py
+├── io_test.py
+├── deadlock_test.py
+│
+├── requirements.txt
+└── README.md
+```
+
+---
+
+# Architecture
+
+The application follows a modular architecture.
+
+```
+                    MiniOS Simulator
+
+                           │
+                           ▼
+                        app.py
+                           │
+         ┌─────────────────┼─────────────────┐
+         │                 │                 │
+         ▼                 ▼                 ▼
+      views            components      Core Modules
+         │                 │                 │
+         ▼                 ▼                 ▼
+ CPU Scheduling       Shared UI         scheduler.py
+ Memory Management    CSS Styles        memory.py
+ I/O Waiting                          io_simulation.py
+ Deadlock Detection                     deadlock.py
+ System Report
+```
+
+This architecture separates the user interface from the operating system simulation logic, making the project easier to maintain and extend.
+
+---
+
+# Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/yourusername/MiniOS-Simulator.git
+```
+
+Go into the project folder
+
+```bash
+cd MiniOS-Simulator
+```
+
+Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+# Running the Project
+
+Console version
+
+```bash
+python main.py
+```
+
+Streamlit Dashboard
+
+```bash
+streamlit run app.py
+```
+
+---
+
+# Dashboard Modules
+
+## Home
+
+Displays
+
+- Project overview
+- Module descriptions
+- Feature summary
+
+---
+
+## CPU Scheduling Dashboard
+
+Features
+
+- Process Table
+- Algorithm Selection
+- Round Robin Quantum Selection
+- Gantt Chart
+- Interactive Gantt Visualization
+- Performance Metrics
+- Scheduling Comparison
+- Best Algorithm Recommendation
+
+---
+
+## Memory Management Dashboard
+
+Features
+
+- Memory Configuration
+- Allocation Algorithm Selection
+- Memory Layout
+- Memory Statistics
+- External Fragmentation
+- Fragmentation Scenario
+- Memory Visualization
+
+---
+
+## I/O Waiting Dashboard
+
+Features
+
+- Process Table
+- Event Log
+- I/O Waiting Simulation
+- Gantt Chart
+- Waiting Time Metrics
+- CPU Utilization
+
+---
+
+## Deadlock Dashboard
+
+Features
+
+- Resource Allocation
+- Resource Requests
+- Resource Allocation Graph
+- Deadlock Detection
+- Deadlock Recovery
+
+---
+
+## System Report
+
+Summarizes
+
+- CPU Scheduling Results
+- Memory Statistics
+- Deadlock Status
+
+---
+
+# Example CPU Scheduling Output
+
+```
+FCFS
+
+Average Waiting Time : 5.00
+Average Turnaround   : 9.00
+CPU Utilization      : 100%
+```
+
+---
+
+# Example Memory Statistics
+
+```
+Used Memory          : 600 MB
+Free Memory          : 424 MB
+Largest Free Block   : 300 MB
+External Fragmentation : 124 MB
+```
+
+---
+
+# Example Deadlock
+
+```
+P1 -> R2
+P2 -> R1
+R1 -> P1
+R2 -> P2
+
+Deadlock Detected
+```
+
+---
+
+# Learning Outcomes
+
+This project demonstrates
+
+- Process Scheduling
+- Memory Allocation
+- Process State Management
+- CPU Scheduling Algorithms
+- Memory Fragmentation
+- I/O Waiting
+- Deadlock Detection
+- Deadlock Recovery
+- Interactive System Visualization
 
 ---
 
@@ -492,10 +386,9 @@ Future Integrations
 - Priority Scheduling
 - Round Robin
 - Gantt Chart
-- Interactive Gantt Visualization
+- Interactive Visualization
 - Performance Metrics
-- Scheduling Comparison
-- Best Algorithm Recommendation
+- Algorithm Comparison
 
 ### Memory Management
 
@@ -504,75 +397,58 @@ Future Integrations
 - Worst Fit
 - Memory Allocation
 - Memory Deallocation
-- Free Block Merging
-- Memory Statistics
-- External Fragmentation Analysis
+- Fragmentation Analysis
 - Memory Visualization
-- Memory Comparison
-- Interactive Fragmentation Scenario
 
 ### I/O Waiting
 
-- Single Process Simulation
-- Multi Process Simulation
-- WAITING State
-- I/O Metrics
+- Waiting Simulation
+- Event Log
+- Performance Metrics
+- Visualization
 
-### Deadlock Detection
+### Deadlock
 
 - Resource Allocation
-- Resource Requests
-- Resource Allocation Graph
 - Cycle Detection
 - Deadlock Detection
-- Deadlock Cycle Visualization
-- Deadlock Recovery
+- Recovery Algorithm
 
 ### Dashboard
 
-- Home Page
-- CPU Scheduling Dashboard
-- Memory Management Dashboard
-
-### Testing
-
-- CPU Scheduling Tests
-- Memory Tests
-- I/O Tests
-- Deadlock Tests
+- Modular Streamlit Architecture
+- Shared UI Components
+- Centralized Styling
 
 ---
 
-## Currently In Development
+# Future Improvements
 
-- I/O Dashboard
-- Deadlock Dashboard
-- System Report Dashboard
+Planned features
 
----
-
-## Planned Features
-
-- Real-Time Simulation
+- Live Process Creation
+- Interactive Memory Editor
+- Dynamic Resource Allocation
 - Process Timeline Animation
-- Resource Monitoring Dashboard
-- Interactive Process Creation
-- Interactive Memory Allocation
-- Export Simulation Report
+- Export Simulation Report (PDF)
+- Dark Theme
+- User-defined Scheduling Algorithms
+- Paging Simulation
+- Segmentation Simulation
+- Virtual Memory Simulation
+- Banker’s Algorithm
+- Multilevel Queue Scheduling
+- Multilevel Feedback Queue Scheduling
+
 ---
 
-# Educational Objectives
+# Why This Project?
 
-This project helps students understand:
+MiniOS Simulator is designed as both a learning platform and a demonstration project.
 
-* Operating System Fundamentals
-* CPU Scheduling Algorithms
-* Memory Allocation Strategies
-* Fragmentation Analysis
-* Process State Transitions
-* I/O Management
-* Deadlock Detection and Recovery
-* System Performance Evaluation
+Instead of presenting operating system concepts only theoretically, it allows users to interact with simulations and immediately observe the effects of different scheduling, memory management, I/O, and deadlock algorithms.
+
+The modular architecture also makes it easy to extend the simulator with additional operating system components.
 
 ---
 
@@ -582,4 +458,10 @@ Arda Alan
 
 Computer Engineering Student
 
-Düzce University
+Duzce University
+
+---
+
+# License
+
+This project is developed for educational purposes.
